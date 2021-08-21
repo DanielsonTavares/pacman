@@ -1,45 +1,27 @@
 import GameElements from "./js/GameElement.js";
+import Player from "./js/Player.js";
 
 const cnv = document.querySelector('#cnv');
 const ctx = document.querySelector('#cnv').getContext('2d');
 
 const gameElements = new GameElements();
 
-const player = {
-    x: 400,
-    y: 400,
-    width: 48,
-    height: 48,
+const player = new Player({
+    x: 400, 
+    y: 400, 
+    width: 48, 
+    height: 48, 
+    color: '#0a0'}, 
+    ctx);
 
-    update(){
-       // this.x++;
-    },
+const player2 = new Player({x: 200, 
+    y: 100, 
+    width: 48, 
+    height: 48, 
+    color: '#600'}, 
+    ctx);
 
-    render(){
-        
-        ctx.fillStyle= '#0f0';
-        ctx.fillRect(this.x, this.y,this.width, this.height);
-        
-    }
-}
 
-const player2 = {
-    x: 200,
-    y: 100,
-    width: 48,
-    height: 48,
-
-    update(){
-       // this.x++;
-    },
-
-    render(){
-        
-        ctx.fillStyle= '#600';
-        ctx.fillRect(this.x, this.y,this.width, this.height);
-        
-    }
-}
 
 
 
