@@ -1,9 +1,9 @@
 import GameElements from "./js/GameElement.js";
 import Player from "./js/Player.js";
-import GC from "./js/GameConfig.js";
+import gameConfig from "./js/GameConfig.js";
 
 //Contexto do canvas
-const   ctx = GC.init();
+const   ctx = gameConfig.init();
 
 const gameElements = new GameElements();
 
@@ -28,15 +28,10 @@ const player2 = new Player({x: 200,
 
 
 function init(){
-    
-    GC.configKeyBoard(player);
-
-
-
+    gameConfig.configKeyBoard(player);
     gameElements.add(player);
     gameElements.add(player2);
     
-
 }
 
 function update(){
@@ -47,21 +42,14 @@ function render(){
     ctx.fillStyle= '#555';
     ctx.fillRect(0, 0,cnv.width, cnv.height);
     
-    gameElements.render();    
-
+    gameElements.render();
 }
 
 function loop(){
     update();
-    
     render();
-    
     requestAnimationFrame(loop);
 }
-
-
-
-
 
 
 init();
