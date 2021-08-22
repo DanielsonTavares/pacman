@@ -9,10 +9,28 @@ export default class Player{
         this.ctx = ctx;
     }
 
-    
+    keyBoard = {};
+    velocity = 4;
+
+    cfgKeyBoardDown(e){
+        this.keyBoard[e.key] = true;
+        
+    }
+
+    cfgKeyBoardUp(e){
+        this.keyBoard[e.key] = false;
+    }
+
+    move(){
+        if(this.keyBoard['ArrowRight']) this.x+=this.velocity;
+        if(this.keyBoard['ArrowLeft']) this.x-=this.velocity;
+        if(this.keyBoard['ArrowDown']) this.y+=this.velocity;
+        if(this.keyBoard['ArrowUp']) this.y-=this.velocity;
+        
+    }
 
     update(){
-       // this.x++;
+       this.move();
     }
 
     render(){

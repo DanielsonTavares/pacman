@@ -1,8 +1,9 @@
 import GameElements from "./js/GameElement.js";
 import Player from "./js/Player.js";
+import GC from "./js/GameConfig.js";
 
-const cnv = document.querySelector('#cnv');
-const ctx = document.querySelector('#cnv').getContext('2d');
+//Contexto do canvas
+const   ctx = GC.init();
 
 const gameElements = new GameElements();
 
@@ -27,9 +28,10 @@ const player2 = new Player({x: 200,
 
 
 function init(){
-    cnv.width = '900';
-    cnv.height = '800';
-    cnv.style.backgroundColor = '#555';
+    
+    GC.configKeyBoard(player);
+
+
 
     gameElements.add(player);
     gameElements.add(player2);
