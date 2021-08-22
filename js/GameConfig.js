@@ -1,7 +1,7 @@
 export default {
     
-    WIDTH: 900,
-    HEIGHT: 800,
+    WIDTH: 888,
+    HEIGHT: 792,
 
     init(){
         this.cnv1 = document.querySelector('#cnv');
