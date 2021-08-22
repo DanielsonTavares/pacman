@@ -40,7 +40,7 @@ function update(){
 
 function render(){
     ctx.fillStyle= '#555';
-    ctx.fillRect(0, 0,cnv.width, cnv.height);
+    ctx.fillRect(0, 0,gameConfig.WIDTH, gameConfig.HEIGHT);
     
     gameElements.render();
 }

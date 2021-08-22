@@ -1,13 +1,15 @@
 export default {
     
+    WIDTH: 900,
+    HEIGHT: 800,
 
     init(){
-        this.cnv = document.querySelector('#cnv');
-        this.ctx = document.querySelector('#cnv').getContext('2d');
+        this.cnv1 = document.querySelector('#cnv');
+        this.ctx = this.cnv1.getContext('2d');
 
-        this.cnv.width = '900';
-        this.cnv.height = '800';
-        this.cnv.style.backgroundColor = '#555';
+        this.cnv1.width = this.WIDTH;
+        this.cnv1.height = this.HEIGHT;
+        this.cnv1.style.backgroundColor = '#555';
 
         return this.ctx;
     },
