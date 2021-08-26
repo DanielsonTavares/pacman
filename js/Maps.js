@@ -126,7 +126,10 @@ export default{
                 
                 
                 if(this.mapaInterior[row][column] > 0){
-                    this.blocos.push({x, y, width, height});
+                    this.blocos.push(new bloco(x, 
+                        y, 
+                        width, 
+                        height));
                 }
             }
         }
@@ -153,4 +156,32 @@ export default{
         }
     }
 
+}
+
+
+class bloco {
+    
+    constructor(x, y, width, height){
+        this.x  = x;
+        this.y  = y;
+        this.width  = width;
+        this.height = height;
+    }
+
+    //Retorna a metade da largura
+    halfWidth (){
+        return this.width/2;
+    };
+    //Retorna a metade da altura
+    halfHeight (){
+        return this.height/2;
+    };
+    //Retorna a posição do centro do objeto no eixo X
+    centerX (){
+        return this.x + this.halfWidth();
+    };
+    //Retorna a posição do centro do objeto no eixo Y
+    centerY (){
+        return this.y + this.halfHeight();
+    };
 }

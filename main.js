@@ -26,15 +26,51 @@ const player2 = new Player({
     ctx);
 
 
-function verificaColisao(bloco){
-    if( player.x <= bloco.x+bloco.width &&
-        player.x+player.width >= bloco.x &&
-        player.y <= bloco.y+bloco.height &&
-        player.y+player.height >= bloco.y){
+// function verificaColisao(bloco){
+//     if( player.x <= bloco.x+bloco.width &&
+//         player.x+player.width >= bloco.x &&
+//         player.y <= bloco.y+bloco.height &&
+//         player.y+player.height >= bloco.y){
             
-            console.log('colidiu');
+//             console.log('colidiu');
+//     }
+// }
+
+    
+    function blockRect(r1,r2){
+        //r1 -> bloqueado
+        //r2 -> parede
+        //catetos; armazenam a distância entre os retângulos
+        var catX = r1.centerX() - r2.centerX();
+        var catY = r1.centerY() - r2.centerY();
+        
+        //soma das metades
+        var sumHalfWidth = r1.halfWidth() + r2.halfWidth();
+        var sumHalfHeight = r1.halfHeight() + r2.halfHeight();
+        
+        if(Math.abs(catX) < sumHalfWidth && Math.abs(catY) < sumHalfHeight){
+            //r2.visible = false;
+            //setTimeout(function(){
+            //	r2.visible = true;
+            //},1000);
+            var overlapX = sumHalfWidth - Math.abs(catX);
+            var overlapY = sumHalfHeight - Math.abs(catY);
+            
+            if(overlapX >= overlapY){//colisão por cima ou por baixo
+                if(catY > 0){//por cima
+                    r1.y += overlapY;
+                } else {
+                    r1.y -= overlapY;
+                }
+            } else {//colisão pela esquerda ou direita
+                if(catX > 0){//colisão pela esquerda
+                    r1.x += overlapX;
+                } else {
+                    r1.x -= overlapX;
+                }
+            }
+        }
     }
-}
 
 
 function init(){
@@ -47,8 +83,10 @@ function init(){
 function update(){
     gameElements.update();
 
-    verificaColisao(player2);
-    blocos.forEach(b => verificaColisao(b));
+    blocos.forEach(b => blockRect(player, b))
+
+    blockRect(player, player2)
+
 }
 
 function render(){
