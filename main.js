@@ -7,6 +7,7 @@ import maps from "./js/Maps.js";
 const   ctx = gameConfig.init();
 
 const gameElements = new GameElements();
+const blocos = maps.createBlocks();
 
 const player = new Player({
     x: 400, 
@@ -24,15 +25,30 @@ const player2 = new Player({
     color: '#600'}, 
     ctx);
 
+
+function verificaColisao(bloco){
+    if( player.x <= bloco.x+bloco.width &&
+        player.x+player.width >= bloco.x &&
+        player.y <= bloco.y+bloco.height &&
+        player.y+player.height >= bloco.y){
+            
+            console.log('colidiu');
+    }
+}
+
+
 function init(){
     gameConfig.configKeyBoard(player);
     gameElements.add(player);
-    gameElements.add(player2);
+    gameElements.add(player2);   
     
 }
 
 function update(){
     gameElements.update();
+
+    verificaColisao(player2);
+    blocos.forEach(b => verificaColisao(b));
 }
 
 function render(){
