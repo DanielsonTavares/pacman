@@ -7,7 +7,7 @@ import maps from "./js/Maps.js";
 const   ctx = gameConfig.init();
 
 const gameElements = new GameElements();
-const blocos = maps.createBlocks();
+const mapElement = maps.createBlocks();
 
 const player = new Player({
     x: 400, 
@@ -35,7 +35,8 @@ function init(){
 function update(){
     gameElements.update();
 
-    blocos.forEach(b => gameElements.colisao(player, b))
+    mapElement.blocos.forEach(b => gameElements.colisao(player, b))
+    mapElement.items.forEach(b => gameElements.colisao(player, b))
 
     gameElements.colisao(player, player2)
 

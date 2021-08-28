@@ -2,7 +2,11 @@ import ObjetoFisico from './ObjetoFisico.js';
 
 export default{
 
-    blocos: [],
+    
+    mapElements: {
+        blocos: [],
+        items: []
+    },
     
     mapa: [
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -127,20 +131,38 @@ export default{
                 
                 
                 if(this.mapaInterior[row][column] > 0){
-                    this.blocos.push(new bloco(x, 
+                    this.mapElements.blocos.push(new bloco(x, 
                         y, 
                         width, 
                         height));
+                }else{//Gerando os blocos com item.
+                    if (row > 1 && column > 1 && row < this.mapaInterior.length-2 && column < this.mapaInterior[row].length-2){
+                        const randon = Math.floor(Math.random()*400);
+                        if (randon === 1) {
+                            x = blockSize*(1 * column);
+                            y = blockSize*(1 * row);
+                            this.mapElements.items.push(new bloco(x, 
+                                                        y, 
+                                                        width, 
+                                                        height,
+                                                        true));
+                        }
+                    }
                 }
             }
         }
 
-        return this.blocos;
+        return this.mapElements;
     },
 
     renderMap(ctx, color){
-        for (const b of this.blocos) {
+        for (const b of this.mapElements.blocos) {
             ctx.fillStyle= color;
+            ctx.fillRect(b.x, b.y, b.width, b.height);
+        }
+
+        for (const b of this.mapElements.items) {
+            ctx.fillStyle= '#a00';
             ctx.fillRect(b.x, b.y, b.width, b.height);
         }
     }
