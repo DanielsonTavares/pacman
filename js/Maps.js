@@ -122,6 +122,9 @@ export default{
     createBlocks(blockSize = 12){
         let width = blockSize;
         let height = blockSize;
+
+        let id = 1;
+
         for(let row=0; row < this.mapaInterior.length; row++){
             
             for(let column=0; column < this.mapaInterior[row].length; column++){
@@ -145,7 +148,9 @@ export default{
                                                         y, 
                                                         width, 
                                                         height,
-                                                        true));
+                                                        true,
+                                                        id));
+                            id++;
                         }
                     }
                 }
@@ -173,13 +178,14 @@ export default{
 
 class bloco extends ObjetoFisico {
     
-    constructor(x, y, width, height, hasItem = false){
+    constructor(x, y, width, height, hasItem = false, id = 0){
         super();
         this.x  = x;
         this.y  = y;
         this.width  = width;
         this.height = height;
         this.hasItem = hasItem;
+        this.id = id;
     }
 
     
