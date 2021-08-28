@@ -111,8 +111,7 @@ export default{
 
     drawMap01(ctx){
 
-        this.renderMap(this.mapa, 24, ctx, '#000');
-        this.renderMap(this.mapaInterior, 12, ctx, '#00a');
+        this.renderMap(ctx, '#00a');
 
     },
 
@@ -139,22 +138,10 @@ export default{
         return this.blocos;
     },
 
-    renderMap(map, blockSize, ctx, color){
-        let width = blockSize;
-        let height = blockSize;
-        for(let row=0; row < map.length; row++){
-            
-            for(let column=0; column < map[row].length; column++){
-            
-                let x = blockSize*(map[row][column] * column);
-                let y = blockSize*(map[row][column] * row);
-                
-                
-                if(map[row][column] > 0){
-                    ctx.fillStyle= color;
-                    ctx.fillRect(x, y,width, height);
-                }
-            }
+    renderMap(ctx, color){
+        for (const b of this.blocos) {
+            ctx.fillStyle= color;
+            ctx.fillRect(b.x, b.y, b.width, b.height);
         }
     }
 
@@ -164,12 +151,13 @@ export default{
 
 class bloco extends ObjetoFisico {
     
-    constructor(x, y, width, height){
+    constructor(x, y, width, height, hasItem = false){
         super();
         this.x  = x;
         this.y  = y;
         this.width  = width;
         this.height = height;
+        this.hasItem = hasItem;
     }
 
     
