@@ -1,7 +1,8 @@
+import Score from './Score.js'
 export default class  gameElements {
     
     constructor(){
-
+        this.score = new Score();
     }
     
     players = [];
@@ -47,6 +48,7 @@ export default class  gameElements {
 
                         if(isColide){
                             b.visible = false;
+                            this.score.add(1);
                         }
                     }
                 )
