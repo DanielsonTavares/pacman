@@ -1,13 +1,14 @@
 import GameElements from "./js/GameElement.js";
 import Player from "./js/Player.js";
 import gameConfig from "./js/GameConfig.js";
-import maps from "./js/Maps.js";
+import gameMap from "./js/GameMap.js";
 
 //Contexto do canvas
 const   ctx = gameConfig.init();
 
 const gameElements = new GameElements();
-const mapElement = maps.createBlocks();
+const mapElement = new gameMap({contexto: ctx});
+mapElement.createBlocks();
 
 const player = new Player({
     x: 400, 
@@ -35,8 +36,8 @@ function init(){
 function update(){
     gameElements.update();
 
-    mapElement.blocos.forEach(b => gameElements.colisao(player, b))
-    mapElement.items.forEach(b => gameElements.colisao(player, b))
+    mapElement.mapElements.blocos.forEach(b => gameElements.colisao(player, b))
+    mapElement.mapElements.items.forEach(b => gameElements.colisao(player, b))
 
     gameElements.colisao(player, player2)
 
@@ -46,7 +47,8 @@ function render(){
     ctx.fillStyle= '#555';
     ctx.fillRect(0, 0,gameConfig.WIDTH, gameConfig.HEIGHT);
     
-    maps.drawMap01(ctx);
+    mapElement.render();
+    
 
     gameElements.render();
 }
