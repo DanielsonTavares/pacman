@@ -40,7 +40,15 @@ export default class  gameElements {
 
             this.maps.forEach(
                 m => m.mapElements.items.forEach(
-                    b => this.colisao(player, b)
+                    (b) => {
+
+                        if(!b.visible) return;
+                        const isColide = this.colisao(player, b)
+
+                        if(isColide){
+                            b.visible = false;
+                        }
+                    }
                 )
             );
 
@@ -86,7 +94,11 @@ export default class  gameElements {
                     r1.x -= overlapX;
                 }
             }
+
+            return true
         }
+
+        return false
     }
 
 };
