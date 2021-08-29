@@ -11,8 +11,8 @@ const mapElement = new gameMap({contexto: ctx});
 mapElement.createBlocks();
 
 const player = new Player({
-    x: 400, 
-    y: 400, 
+    x: mapElement.playerPosition.x, 
+    y: mapElement.playerPosition.y, 
     width: 36, 
     height: 36, 
     color: '#ccaa00'}, 
