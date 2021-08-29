@@ -4,9 +4,10 @@ export default class  gameElements {
 
     }
     
-    objects = [];
+    players = [];
+    maps = [];
 
-    add(obj){
+    addPlayer(obj){
         
         if(!obj.update){
             console.error('Obj Inválido. update() não implementado.', obj);
@@ -18,17 +19,41 @@ export default class  gameElements {
             return false;
         }
 
-        this.objects.push(obj);
+        this.players.push(obj);
+    };
+
+    addMap(obj){
+        this.maps.push(obj);
     };
 
     update(){
-        this.objects.forEach(o => {
+        this.players.forEach(o => {
             o.update();
+        });
+
+        this.players.forEach(player => {
+            this.maps.forEach(
+                m => m.mapElements.blocos.forEach(
+                    b => this.colisao(player, b)
+                )
+            );
+
+            this.maps.forEach(
+                m => m.mapElements.items.forEach(
+                    b => this.colisao(player, b)
+                )
+            );
+
+            
         });
     };
 
     render(){
-        this.objects.forEach(o => {
+        this.players.forEach(o => {
+            o.render();
+        });
+        
+        this.maps.forEach(o => {
             o.render();
         });
     };

@@ -28,28 +28,21 @@ const player2 = new Player({
 
 function init(){
     gameConfig.configKeyBoard(player);
-    gameElements.add(player);
-    gameElements.add(player2);   
+    gameElements.addPlayer(player2);
+    gameElements.addPlayer(player);
+    gameElements.addMap(mapElement);
     
 }
 
 function update(){
     gameElements.update();
-
-    mapElement.mapElements.blocos.forEach(b => gameElements.colisao(player, b))
-    mapElement.mapElements.items.forEach(b => gameElements.colisao(player, b))
-
     gameElements.colisao(player, player2)
-
 }
 
 function render(){
     ctx.fillStyle= '#555';
     ctx.fillRect(0, 0,gameConfig.WIDTH, gameConfig.HEIGHT);
     
-    mapElement.render();
-    
-
     gameElements.render();
 }
 
