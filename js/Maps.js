@@ -123,7 +123,7 @@ export default{
         let width = blockSize;
         let height = blockSize;
 
-        let id = 1;
+        let id = 0;
 
         for(let row=0; row < this.mapaInterior.length; row++){
             
